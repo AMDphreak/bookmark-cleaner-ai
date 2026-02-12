@@ -1,0 +1,103 @@
+= AI Providers Implementation Summary
+
+== Overview
+
+Updated support for multiple AI providers to November 2025 standards, with a focus on state-of-the-art and performant models. Introduced Moonshot AI (Kimi) as a new provider.
+
+== Supported Providers
+
+=== 1. Groq ⭐ (Recommended for Performance)
+
+* **Models**: Llama 4 70B Versatile, Llama 4 8B Instant, Mixtral 8x22B, GPT-OSS-120B
+* **Why Recommended**: Fastest inference, excellent performance, includes state-of-the-art open-source models.
+* **API**: https://console.groq.com/keys
+* **Default Model**: Llama 4 70B Versatile (recommended)
+
+=== 2. Gemini ⭐ (Recommended for Free Access)
+
+* **Models**: Gemini 2.5 Pro, Gemini 2.5 Flash, Gemini 3 Pro (Expected Soon), Gemini 3 Flash (Expected Soon)
+* **Why Recommended**: Free tier available with advanced reasoning and multimodal capabilities. Gemini 3.0 models are anticipated to be available soon, offering next-generation performance.
+* **API**: https://aistudio.google.com/apikey
+* **Default Models**: Gemini 2.5 Pro and Gemini 2.5 Flash (both recommended)
+
+=== 3. Kimi (Moonshot AI) ⭐ (Recommended for Open Source SOTA)
+
+* **Models**: Kimi K2-0905 1T 256K, Kimi K2 Thinking
+* **Why Recommended**: State-of-the-art open-source model with large context window, rivaling commercial thinking models.
+* **API**: https://platform.moonshot.ai/console/api-keys
+* **Default Model**: Kimi K2-0905 1T 256K (recommended)
+
+=== 4. OpenAI
+
+* **Models**: GPT-5, GPT-4.5 Turbo, GPT-4o, etc. (dynamically fetched)
+* **API**: https://platform.openai.com/api-keys
+* **Latest**: GPT-5 (recommended) - advanced reasoning and multimodal capabilities
+
+=== 5. Claude (Anthropic)
+
+* **Models**: Claude Sonnet 4.5, Claude Opus 4, Claude Haiku 4
+* **API**: https://console.anthropic.com/
+* **Latest**: Claude Sonnet 4.5 (recommended) - exceptional in software engineering and reasoning
+
+=== 6. Grok (xAI)
+
+* **Models**: Grok-4 Heavy, Grok-4 Fast, Grok-4
+* **API**: https://x.ai/api
+* **Latest**: Grok-4 Heavy (recommended) - fastest response times with live web data
+* **Other**: Grok-4 Fast - optimized for fast reasoning
+
+=== 7. OpenRouter
+
+* **Models**: All models available on OpenRouter (dynamically fetched)
+* **API**: https://openrouter.ai/keys
+
+== Implementation Details
+
+=== Files Created/Modified
+
+* `src/utils/aiProviders.ts` - Updated AI provider client implementations with latest models and Kimi client.
+* `src/types.ts` - Added `kimi` to `AIProvider` type.
+* `src/utils/settings.ts` - Extended `AppSettings` to support all provider API keys, and updated `getApiKey`/`setApiKey`.
+* `src/components/SettingsDialog.tsx` - Updated to support all providers including Kimi, and refreshed recommendation text.
+* `src/windows/ChatWindow.tsx` - Updated with provider selection for Kimi, and refreshed recommendation text.
+* `src-tauri/src/main.rs` - Updated settings struct to include `kimi_api_key`.
+
+=== Features
+
+* **Provider Selection**: Dropdown to select AI provider (now includes Kimi).
+* **Model Selection**: Auto-populated based on selected provider, featuring latest and recommended models.
+* **Recommended Models**: Highlighted with badges (e.g., ⭐, Free, Open Source).
+* **Settings Management**: Centralized dialog for all API keys.
+* **Smart Defaults**: Groq (Llama 4 70B) selected by default, recommended models auto-selected.
+* **User Guidance**: Alerts and tips encouraging the use of state-of-the-art and free models.
+
+== User Experience
+
+=== Recommendations Displayed
+
+1. **Alert Banner**: Shows recommendations for Groq (Llama 4 70B) for fast inference and Gemini 3 Pro for free AI access.
+2. **Provider Dropdown**: Groq, Gemini, and Kimi are marked with ⭐ and relevant badges.
+3. **Model List**: Recommended models show "Recommended" badge and descriptions.
+4. **Settings Dialog**: Info alert with updated recommendations.
+
+=== Default Behavior
+
+* Default provider: Groq
+* Auto-selects recommended model when available
+* Prompts for API key if missing when trying to use a provider
+
+== API Key Management
+
+* All API keys stored in settings file (`{app_config_dir}/settings.json`).
+* Settings dialog allows configuring all providers.
+* Empty keys are cleared (set to undefined).
+* Keys are validated when loading models.
+
+== Future Enhancements
+
+* Provider-specific model filtering/search
+* Cost estimation per provider
+* Usage statistics
+* Provider comparison tool
+* Batch testing across providers
+

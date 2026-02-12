@@ -1,0 +1,113 @@
+= Bookmark Cleaner AI - Project Summary
+
+== Overview
+
+This is an AI-powered desktop application built with Tauri, SolidJS, and SUID.dev to help synchronize bookmarks across Firefox, Google Chrome, and Microsoft Edge browsers.
+
+== Features Implemented
+
+=== Core Functionality
+
+* **Multi-Profile Support**: Manage multiple user profiles across different browsers
+* **Profile Mapping**: Map profiles from different browsers to each other (e.g., user1 Firefox → user1 Chrome)
+* **Bookmark Reading**: Read bookmarks from local browser files
+** Firefox: Reads from SQLite database (places.sqlite)
+** Chrome/Edge: Reads from JSON bookmark files
+* **Bookmark Validation**: Comprehensive validation system
+** Dead link detection (red)
+** Mismatched description detection (yellow)
+** Invalid path detection (orange)
+** Duplicate detection (purple)
+* **AI-Powered Analysis**: Integration with OpenRouter for AI model selection
+* **Multiple Windows**: Separate windows for validation and AI chat
+
+=== User Interface
+
+* **Main Window**: Profile management, bookmark loading, source selection
+* **Validation Window**: Colorized bookmark tree showing validation statuses
+* **AI Chat Window**: Interactive chat with bookmark view panel and model selection
+
+== Technology Stack
+
+* **Frontend**: SolidJS (reactive framework)
+* **UI Components**: SUID.dev (Material Design)
+* **Backend**: Tauri (Rust)
+* **AI Integration**: OpenRouter API
+* **Build Tool**: Vite
+* **Package Manager**: pnpm
+
+== Project Structure
+
+----
+bookmark-cleaner-ai/
+├── src/
+│   ├── components/
+│   │   └── ProfileManager.tsx      # Profile management component
+│   ├── windows/
+│   │   ├── MainWindow.tsx          # Main application window
+│   │   ├── ValidationWindow.tsx    # Bookmark validation display
+│   │   └── ChatWindow.tsx          # AI chat interface
+│   ├── utils/
+│   │   ├── bookmarkReaders.ts      # Browser bookmark reading
+│   │   ├── bookmarkValidator.ts    # Validation logic
+│   │   └── openRouter.ts           # OpenRouter API integration
+│   ├── types.ts                    # TypeScript type definitions
+│   ├── App.tsx                     # Root component
+│   └── main.tsx                    # Entry point
+├── src-tauri/
+│   ├── src/
+│   │   └── main.rs                  # Rust backend with Tauri commands
+│   ├── Cargo.toml                  # Rust dependencies
+│   └── tauri.conf.json             # Tauri configuration
+├── package.json
+├── vite.config.ts
+├── tsconfig.json
+└── README.adoc
+----
+
+== Key Components
+
+=== Bookmark Reading
+
+The application reads bookmarks from:
+* Firefox: SQLite database (`places.sqlite`) using `rusqlite`
+* Chrome/Edge: JSON files (`Bookmarks`) using standard file I/O
+
+=== Validation System
+
+The validation system checks:
+1. **Dead Links**: Attempts to fetch URLs to detect broken links
+2. **Mismatched Descriptions**: Compares bookmark descriptions with live page content
+3. **Invalid Paths**: Detects URLs with valid domains but invalid paths
+4. **Duplicates**: Finds duplicate URLs within and across profiles
+
+=== AI Integration
+
+* Uses OpenRouter API for model selection
+* Supports any model available on OpenRouter
+* Sends bookmark context to AI for analysis
+* Generates integration plans based on bookmark structures
+
+== Future Enhancements
+
+* **API Connection Support**: Direct integration with browser bookmark APIs
+* **Bookmark Export**: Export unified bookmark structure back to browsers
+* **Automatic Sync**: Background synchronization between browsers
+* **Conflict Resolution**: UI for resolving bookmark conflicts
+* **Bookmark Editing**: In-app bookmark editing capabilities
+
+== Known Limitations
+
+* Firefox bookmark reading requires the browser to be closed (SQLite lock)
+* Validation may be slow for large bookmark collections
+* API connection support is not yet implemented (local files only)
+* Icons need to be generated/added for the application
+
+== Getting Started
+
+See `SETUP.adoc` for detailed installation and setup instructions.
+
+== License
+
+MIT
+

@@ -1,0 +1,82 @@
+= Bookmark Cleaner AI
+
+An AI-powered application to intelligently synchronize bookmarks between Firefox, Google Chrome, and Microsoft Edge.
+
+== Features
+
+* Multi-profile support: Sync bookmarks for different user profiles across browsers
+* Profile mapping: Map profiles from different browsers to each other
+* Local file reading: Read bookmarks directly from browser files on disk
+* API support: Connect to browser bookmark APIs (future feature)
+* Bookmark validation: Check for dead links, mismatched descriptions, invalid paths, and duplicates
+* AI-powered analysis: Use OpenRouter to analyze bookmarks and generate integration plans
+* Multiple windows: Separate windows for validation and AI chat
+
+== Technology Stack
+
+* Tauri: Desktop application framework
+* SolidJS: Reactive UI framework
+* SUID.dev: Material Design component library
+* OpenRouter: AI model API integration
+
+== Setup
+
+=== Prerequisites
+
+* Node.js and pnpm
+* Rust and Cargo (for Tauri)
+
+=== Installation
+
+[source,bash]
+----
+pnpm install
+----
+
+=== Development
+
+[source,bash]
+----
+pnpm tauri dev
+----
+
+=== Build
+
+[source,bash]
+----
+pnpm tauri build
+----
+
+== Usage
+
+1. Add bookmark profiles for each browser you want to sync
+2. Configure profile paths or API connections
+3. Map profiles to each other (e.g., user1 Firefox → user1 Chrome → user1 Edge)
+4. Load bookmarks from each profile
+5. View validation results to see dead links, duplicates, etc.
+6. Use the AI chat to analyze bookmarks and generate integration plans
+
+== Browser Bookmark Locations
+
+=== Firefox
+
+Windows: `%APPDATA%\Mozilla\Firefox\Profiles\<profile>\places.sqlite`
+macOS: `~/Library/Application Support/Firefox/Profiles/<profile>/places.sqlite`
+Linux: `~/.mozilla/firefox/<profile>/places.sqlite`
+
+=== Chrome
+
+Windows: `%LOCALAPPDATA%\Google\Chrome\User Data\Default\Bookmarks`
+macOS: `~/Library/Application Support/Google/Chrome/Default/Bookmarks`
+Linux: `~/.config/google-chrome/Default/Bookmarks`
+
+=== Edge
+
+Windows: `%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Bookmarks`
+macOS: `~/Library/Application Support/Microsoft Edge/Default/Bookmarks`
+Linux: `~/.config/microsoft-edge/Default/Bookmarks`
+
+== License
+
+MIT
+

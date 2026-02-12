@@ -1,0 +1,98 @@
+= Setup Instructions
+
+== Prerequisites
+
+* Node.js (v18 or later)
+* pnpm (install with `npm install -g pnpm`)
+* Rust and Cargo (for Tauri backend)
+** Install from https://rustup.rs/
+
+== Installation
+
+1. Install dependencies:
+
+[source,bash]
+----
+pnpm install
+----
+
+2. Install Rust dependencies (Tauri will do this automatically on first build)
+
+== Development
+
+Run the development server:
+
+[source,bash]
+----
+pnpm tauri dev
+----
+
+This will:
+* Start the Vite dev server
+* Compile the Rust backend
+* Launch the Tauri application
+
+== Building
+
+Build for production:
+
+[source,bash]
+----
+pnpm tauri build
+----
+
+== Icons
+
+The application needs icons in `src-tauri/icons/`. You can:
+* Use the Tauri icon generator: https://tauri.app/v1/guides/features/icons
+* Or create your own icons in the required sizes:
+** 32x32.png
+** 128x128.png
+** 128x128@2x.png
+** 256x256.png
+** 256x256@2x.png
+** 512x512.png
+** 512x512@2x.png
+
+== Configuration
+
+=== Bookmark Paths
+
+The application needs the paths to your browser bookmark files:
+
+* Firefox: Path to the profile directory containing `places.sqlite`
+* Chrome: Path to the `Bookmarks` file
+* Edge: Path to the `Bookmarks` file
+
+Example paths on Windows:
+* Firefox: `C:\Users\YourName\AppData\Roaming\Mozilla\Firefox\Profiles\xxxxx.default-release`
+* Chrome: `C:\Users\YourName\AppData\Local\Google\Chrome\User Data\Default\Bookmarks`
+* Edge: `C:\Users\YourName\AppData\Local\Microsoft\Edge\User Data\Default\Bookmarks`
+
+=== OpenRouter API
+
+To use the AI chat feature, you'll need an OpenRouter API key:
+1. Sign up at https://openrouter.ai/
+2. Get your API key from the dashboard
+3. Enter it in the AI Chat window
+
+== Troubleshooting
+
+=== Rust Compilation Errors
+
+If you encounter Rust compilation errors:
+* Make sure Rust is up to date: `rustup update`
+* Clean and rebuild: `cd src-tauri && cargo clean && cd .. && pnpm tauri dev`
+
+=== Bookmark Reading Errors
+
+* Make sure the browser is closed when reading bookmarks (files may be locked)
+* Verify the profile path is correct
+* Check file permissions
+
+=== Window Creation Errors
+
+If windows don't open:
+* Check the browser console for errors
+* Verify Tauri window features are enabled in `Cargo.toml`
+

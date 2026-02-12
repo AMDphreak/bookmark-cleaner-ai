@@ -1,0 +1,31 @@
+{
+  "productName": "bookmark-cleaner-ai",
+  "version": "0.1.0",
+  "identifier": "com.amdphreak.bookmark-cleaner-ai",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "beforeBuildCommand": "pnpm build",
+    "devUrl": "http://localhost:1420",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Bookmark Cleaner AI",
+        "width": 1200,
+        "height": 800,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "app",
+    "icon": []
+  }
+}
+

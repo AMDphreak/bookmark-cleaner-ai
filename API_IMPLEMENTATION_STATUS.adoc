@@ -1,0 +1,62 @@
+= API Implementation Status
+
+== Current Status
+
+=== Browser Bookmark APIs
+
+**NOT IMPLEMENTED** - The UI supports it, but the actual API calls are missing.
+
+What's needed:
+* Firefox: Uses Firefox Accounts API or Sync API (requires OAuth)
+* Chrome: Uses Chrome Bookmarks API (requires OAuth and extension)
+* Edge: Uses Microsoft Graph API (requires OAuth)
+
+These require:
+1. OAuth authentication flows
+2. API client implementations
+3. Token storage and refresh logic
+
+**Status**: The ProfileManager UI allows users to enable API mode and enter API tokens, but the actual bookmark reading functions (`readFirefoxBookmarks`, `readChromeBookmarks`, `readEdgeBookmarks`) only support local file reading. The `loadBookmarks` function in MainWindow doesn't check `apiEnabled` flag.
+
+**To Implement**:
+* Add API reading functions for each browser
+* Update `loadBookmarks` to check `apiEnabled` and use API functions when enabled
+* Implement OAuth flows (complex, significant work)
+
+=== OpenRouter API Key
+
+**IMPLEMENTED** ✅
+
+Completed:
+* ✅ Settings file management (Tauri commands: `load_settings`, `save_settings`)
+* ✅ Settings stored in JSON file in app config directory (not localStorage)
+* ✅ Settings dialog component
+* ✅ Settings button in AI window (gear icon)
+* ✅ Prompt for API key on first use (when sending first message)
+* ✅ API key loaded from settings on window open
+
+**Implementation Details**:
+* Settings file: `{app_config_dir}/settings.json`
+* TypeScript utility: `src/utils/settings.ts`
+* Settings dialog: `src/components/SettingsDialog.tsx`
+* ChatWindow updated to use settings instead of localStorage
+
+== Implementation Plan
+
+=== Browser Bookmark APIs
+
+Since browser bookmark APIs require OAuth and are complex, we have two options:
+
+1. **Full Implementation**: Implement OAuth flows for each browser
+   * Firefox: Firefox Accounts OAuth
+   * Chrome: Google OAuth (Chrome Bookmarks API)
+   * Edge: Microsoft Graph OAuth
+   * This is a significant undertaking
+
+2. **Simplified Approach**: For now, document that API support requires:
+   * User to manually export bookmarks via browser extensions
+   * Or use browser sync services that provide export APIs
+   * Or implement OAuth flows (future enhancement)
+
+**Recommendation**: Leave as future enhancement unless there's specific demand. Local file reading covers most use cases.
+
