@@ -3,21 +3,12 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-ifndef::env-github[]
+[[readme-top]]
 image:https://img.shields.io/github/contributors/AMDphreak/bookmark-cleaner-ai.svg?style=for-the-badge[Contributors,link=https://github.com/AMDphreak/bookmark-cleaner-ai/graphs/contributors]
 image:https://img.shields.io/github/forks/AMDphreak/bookmark-cleaner-ai.svg?style=for-the-badge[Forks,link=https://github.com/AMDphreak/bookmark-cleaner-ai/network/members]
 image:https://img.shields.io/github/stars/AMDphreak/bookmark-cleaner-ai.svg?style=for-the-badge[Stars,link=https://github.com/AMDphreak/bookmark-cleaner-ai/stargazers]
 image:https://img.shields.io/github/issues/AMDphreak/bookmark-cleaner-ai.svg?style=for-the-badge[Issues,link=https://github.com/AMDphreak/bookmark-cleaner-ai/issues]
 image:https://img.shields.io/github/license/AMDphreak/bookmark-cleaner-ai.svg?style=for-the-badge[License,link=https://github.com/AMDphreak/bookmark-cleaner-ai/blob/main/LICENSE]
-endif::[]
-
-ifdef::env-github[]
-image:https://img.shields.io/github/contributors/AMDphreak/bookmark-cleaner-ai.svg?style=for-the-badge[Contributors]
-image:https://img.shields.io/github/forks/AMDphreak/bookmark-cleaner-ai.svg?style=for-the-badge[Forks]
-image:https://img.shields.io/github/stars/AMDphreak/bookmark-cleaner-ai.svg?style=for-the-badge[Stars]
-image:https://img.shields.io/github/issues/AMDphreak/bookmark-cleaner-ai.svg?style=for-the-badge[Issues]
-image:https://img.shields.io/github/license/AMDphreak/bookmark-cleaner-ai.svg?style=for-the-badge[License]
-endif::[]
 
 = Bookmark Cleaner AI
 
@@ -30,6 +21,8 @@ link:https://github.com/AMDphreak/bookmark-cleaner-ai/issues[Request Feature]
 
 An AI-powered application to intelligently synchronize bookmarks between Firefox, Google Chrome, and Microsoft Edge.
 
+link:#readme-top[back to top]
+
 == Features
 
 * Multi-profile support: Sync bookmarks for different user profiles across browsers
@@ -39,6 +32,8 @@ An AI-powered application to intelligently synchronize bookmarks between Firefox
 * Bookmark validation: Check for dead links, mismatched descriptions, invalid paths, and duplicates
 * AI-powered analysis: Use OpenRouter to analyze bookmarks and generate integration plans
 * Multiple windows: Separate windows for validation and AI chat
+
+link:#readme-top[back to top]
 
 == Installation
 
@@ -53,6 +48,8 @@ An AI-powered application to intelligently synchronize bookmarks between Firefox
 ----
 pnpm install
 ----
+
+link:#readme-top[back to top]
 
 == Usage
 
@@ -99,9 +96,13 @@ Windows: `%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Bookmarks`
 macOS: `~/Library/Application Support/Microsoft Edge/Default/Bookmarks`
 Linux: `~/.config/microsoft-edge/Default/Bookmarks`
 
+link:#readme-top[back to top]
+
 == License
 
 MIT
+
+link:#readme-top[back to top]
 
 == Contact
 
@@ -109,3 +110,5 @@ Ryan Johnson — link:https://twitter.com/amdphreak[@amdphreak]
 
 * Project: https://github.com/AMDphreak/bookmark-cleaner-ai
 * Site: https://ryanjohnson.dev
+
+link:#readme-top[back to top]
